@@ -2,8 +2,10 @@ from flask import Flask
 
 app = Flask(__name__)
 
-
-@app.route('54.173.252.10/')
+@app.route("http://54.173.252.10:5000/")
 def hello():
-    return 'I am almost a Devops Engineer'
-  
+    return "i am almost a devops engineer"
+
+if __name__ == "__main__":
+    app.run()
+
