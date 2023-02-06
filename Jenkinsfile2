@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: '']]])
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'flask.yml',
+                        extraVars: [
+                            f1: 'f1'
+                        ],
+                        inventory: 'hosts.ini'
+                    )
+                }
+            }
+        }
+    }
+}
