@@ -13,8 +13,8 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'python3 flasktest.py &'
-        input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
+        sh 'python3 -m flasktest.py &'
+        
       }
     }
 
