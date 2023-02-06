@@ -16,37 +16,18 @@
         - python3-pip
     state: present
 
+  - name: Clone the repository
+    git:
+      repo: https://github.com/jessyewoma/Flaskweb.git
+      dest: /opt/Flaskweb
 
-  - name: Start Flask web app as a service
-    copy:
-      src: flasktest.py
-      dest: opt/flaskweb
-    become: yes
-    
-     - name: Start Flask web app as a service
-    copy:
-      src: flasktest.py
-      dest: opt/flaskweb
-    become: yes
+  - name: Install Flask and its dependencies
+    pip:
+      name: flask
+      virtualenv: /var/www/flasktest.env
+      chdir: /opt/flaskweb
 
-    - name: Clone the repository
-      git:
-        repo: https://github.com/jessyewoma/Flaskweb.git
-        dest: opt/Flaskweb
-     
-    - name: Install Flask and its dependencies
-      pip:
-        name: flask
-        virtualenv: /var/www/flasktest.env
-        chdir: opt/flaskweb
-
-      command: |
-      cd /opt/
-      nohup python3 flasktest.py &
-    become: yes
-
-   - name: Start the Flask web app
-      command: /opt/flask-env/bin/python3 /opt/flaskweb/flasktest.py
-      async: 1
-      poll: 0
-  ...    
+  - name: Start the Flask web app
+    command: /var/www/flasktest.env/bin/python3 /opt/flaskweb/flasktest.py
+    async: 1
+    poll: 0
