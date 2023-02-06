@@ -40,7 +40,7 @@
         virtualenv: /var/www/flasktest.env
         chdir: opt/flaskweb
 
-    command: |
+      command: |
       cd /opt/
       nohup python3 flasktest.py &
     become: yes
