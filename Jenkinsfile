@@ -34,7 +34,7 @@ pipeline {
         }
         success {
             
-            sh "sudo nohup python3 app.py > log.txt 2>&1 &"
+            sh "sudo nohup python3 flasktest.py > log.txt 2>&1 &"
             echo "Flask Application Up and running!!"
         }
         failure {
