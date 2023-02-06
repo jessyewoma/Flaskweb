@@ -3,8 +3,6 @@
   hosts: F1
   become: yes
 
-
-
 tasks:
   - name: Add a default Ubuntu repo
     apt_repository:
@@ -31,7 +29,6 @@ tasks:
       dest: opt/flaskweb
     become: yes
 
-
     - name: Clone the repository
       git:
         repo: https://github.com/jessyewoma/Flaskweb.git
@@ -42,8 +39,6 @@ tasks:
         name: flask
         virtualenv: /var/www/flasktest
         chdir: opt/flaskweb
-    
-    
 
     command: |
       cd /opt/
