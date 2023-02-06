@@ -22,36 +22,36 @@ tasks:
   - name: Start Flask web app as a service
     copy:
       src: flasktest.py
-      dest: /var/www/flaskweb
+      dest: opt/flaskweb
     become: yes
     
      - name: Start Flask web app as a service
     copy:
       src: flasktest.py
-      dest: /var/www/flaskweb
+      dest: opt/flaskweb
     become: yes
 
 
     - name: Clone the repository
       git:
         repo: https://github.com/jessyewoma/Flaskweb.git
-        dest: /var/Flaskweb
+        dest: opt/Flaskweb
      
     - name: Install Flask and its dependencies
       pip:
         name: flask
         virtualenv: /var/www/flasktest
-        chdir: /var/flaskweb
+        chdir: opt/flaskweb
     
     
 
     command: |
-      cd /var/www/
+      cd /opt/
       nohup python3 flasktest.py &
     become: yes
 
    - name: Start the Flask web app
-      command: /var/flask-env/bin/python3 /opt/flaskweb/flasktest.py
+      command: /opt/flask-env/bin/python3 /opt/flaskweb/flasktest.py
       async: 1
       poll: 0
   ...    
