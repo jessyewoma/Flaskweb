@@ -21,18 +21,36 @@ tasks:
 
   - name: Start Flask web app as a service
     copy:
-      src: app.py
-      dest: /var/www/app.py
+      src: flasktest.py
+      dest: /var/www/flaskweb
     become: yes
+    
+     - name: Start Flask web app as a service
+    copy:
+      src: app.py
+      dest: /var/www/flaskweb
+    become: yes
+
+
+    - name: Clone the repository
+      git:
+        repo: 
+        dest: /opt/Flaskweb
+     
+    - name: Install Flask and its dependencies
+      pip:
+        name: flask
+        virtualenv: /opt/flasktest
+        chdir: /opt/flaskweb
+    
+    
 
     command: |
       cd /var/www/
-      nohup python3 app.py &
+      nohup python3 flasktest.py &
     become: yes
 
-  
-
-    command: |
-      systemctl restart nginx
-      systemctl enable nginx
-    become: yes
+   - name: Start the Flask web app
+      command: /opt/flask-env/bin/python3 /opt/flaskweb/flasktest.py
+      async: 1
+      poll: 0
