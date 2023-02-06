@@ -3,7 +3,7 @@
   hosts: F1
   become: yes
 
-tasks:
+  tasks:
   - name: Add a default Ubuntu repo
     apt_repository:
       repo: 'deb http://archive.ubuntu.com/ubuntu focal main'
