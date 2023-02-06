@@ -37,7 +37,7 @@ tasks:
     - name: Install Flask and its dependencies
       pip:
         name: flask
-        virtualenv: /var/www/flasktest
+        virtualenv: /var/www/flasktest.env
         chdir: opt/flaskweb
 
     command: |
