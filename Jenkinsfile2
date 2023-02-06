@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     ansiblePlaybook(
-                        playbook: 'flask.yml',
+                        playbook: 'ansible.yml',
                         extraVars: [
                             f1: 'f1'
                         ],
