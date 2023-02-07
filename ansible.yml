@@ -26,7 +26,15 @@
       virtualenv: /var/www/flasktest.env
       chdir: /opt/flaskweb
 
-  - name: Start the Flask web app
-    command: /var/www/flasktest.env/bin/python3 /opt/flaskweb/flasktest.py
-    async: 1
-    poll: 0
+  - name: Install Flask
+  pip:
+    name: flask
+
+- name: Enable Flask Service
+  service:
+    name: flask
+    state: started
+    enabled: yes
+  async: 1
+  poll: 0
+
